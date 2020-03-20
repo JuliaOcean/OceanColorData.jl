@@ -2,3 +2,6 @@ name = "OceanColorData"
 uuid = "39357346-8f20-4302-be7b-c20dcd116b7a"
 authors = ["gaelforget <gforget@mit.edu>"]
 version = "0.1.0"
+
+[compat]
+julia = "1"
