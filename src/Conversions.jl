@@ -49,7 +49,7 @@ end
 
 
 """
-    RrsToChla(Rrs)
+    RrsToChla(Rrs; Eqn="OC4")
 
 Satellite `Chl_a` estimates typicaly derive from remotely sensed reflectances
 using the blue/green reflectance ratio method and a polynomial formulation.
@@ -61,16 +61,18 @@ rirr_in=1e-3*[23.7641,26.5037,27.9743,30.4914,28.1356,
     21.9385,18.6545,13.5100,5.6338,3.9272,2.9621,2.1865,1.8015]
 
 rrs_out=RemotelySensedReflectance(rirr_in,wvbd_in,wvbd_out)
-chla_out=RrsToChla(rrs_out; Eqn=1)
+chla_out=RrsToChla(rrs_out)
 ```
 """
-function RrsToChla(Rrs;Eqn=1)
+function RrsToChla(Rrs;Eqn="OC4")
     RRSB=max.(Rrs[2],Rrs[3]) #blue
     RRSG=Rrs[5] #green
     X = log10.(RRSB./RRSG) #ratio of blue to green
 
-    if Eqn==1
+    if Eqn=="OC4"
         C=[0.3272, -2.9940, +2.7218, -1.2259, -0.5683] #OC4 algorithms (SeaWifs, CCI)
+    elseif Eqn=="OC3M-547"
+        C=[0.2424, -2.7423, 1.8017, 0.0015, -1.2280] #OC3M-547 algorithm (MODIS)
     else
         error("this case has not been implemented yet...")
     end

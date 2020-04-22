@@ -25,10 +25,13 @@ end
 [Jackson et al 2017](http://dx.doi.org/10.1016/j.rse.2017.03.036) can be used to
 assign optical class memberships from an `Rrs` vector. This function provides
 vector `M` and inverse matrix `Sinv` for the Jackson et al 2017 classifier.
+
+Credits: T. Jackson kindly provided the `J17.nc` classifier file
 """
 function Jackson2017()
-        tmpM = ncread("examples/J17.nc", "cluster_means")
-        tmpSinv = ncread("examples/J17.nc", "inverse_covariance")
+        fil=joinpath(dirname(pathof(OceanColorData)),"../examples/J17.nc")
+        tmpM = ncread(fil, "cluster_means")
+        tmpSinv = ncread(fil, "inverse_covariance")
 
         M=Array{Any,1}(undef,14)
         Sinv=Array{Any,1}(undef,14)
