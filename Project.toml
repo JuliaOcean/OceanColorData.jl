@@ -1,7 +1,7 @@
 name = "OceanColorData"
 uuid = "39357346-8f20-4302-be7b-c20dcd116b7a"
 authors = ["gaelforget <gforget@mit.edu>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
